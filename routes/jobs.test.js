@@ -218,33 +218,33 @@ describe("PATCH /jobs/:title", function () {
   });
 });
 
-// /************************************** DELETE /companies/:handle */
+/************************************** DELETE /companies/:handle */
 
-// describe("DELETE /companies/:handle", function () {
-//   test("works for admin", async function () {
-//     const resp = await request(app)
-//         .delete(`/companies/c1`)
-//         .set("authorization", `Bearer ${adminToken}`);
-//     expect(resp.body).toEqual({ deleted: "c1" });
-//   });
+describe("DELETE /jobs/:title", function () {
+  test("works for admin", async function () {
+    const resp = await request(app)
+        .delete(`/jobs/j1`)
+        .set("authorization", `Bearer ${adminToken}`);
+    expect(resp.body).toEqual({ deleted: "j1" });
+  });
 
-//   test("unauth if user not admin", async function () {
-//     const resp = await request(app)
-//         .delete(`/companies/c1`)
-//         .set("authorization", `Bearer ${u1Token}`);
-//     expect(resp.statusCode).toEqual(401);
-//   });
+  test("unauth if user not admin", async function () {
+    const resp = await request(app)
+        .delete(`/jobs/j1`)
+        .set("authorization", `Bearer ${u1Token}`);
+    expect(resp.statusCode).toEqual(401);
+  });
 
-//   test("unauth for anon", async function () {
-//     const resp = await request(app)
-//         .delete(`/companies/c1`);
-//     expect(resp.statusCode).toEqual(401);
-//   });
+  test("unauth for anon", async function () {
+    const resp = await request(app)
+        .delete(`/jobs/j1`)
+    expect(resp.statusCode).toEqual(401);
+  });
 
-//   test("not found for no such company", async function () {
-//     const resp = await request(app)
-//         .delete(`/companies/nope`)
-//         .set("authorization", `Bearer ${adminToken}`);
-//     expect(resp.statusCode).toEqual(404);
-//   });
-// });
+  test("not found if no such job", async function () {
+    const resp = await request(app)
+        .delete(`/jobs/nope`)
+        .set("authorization", `Bearer ${adminToken}`);
+    expect(resp.statusCode).toEqual(404);
+  });
+});
